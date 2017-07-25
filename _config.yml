@@ -10,10 +10,10 @@
 ############################
 
 # Name of website
-title: My website
+title: Michael's Blog
 
-# Your name to show in the footer
-author: Some Person
+# Short description of your site
+description: The technical writings of Michael Overmeyer
 
 ###############################################
 # --- List of links in the navigation bar --- #
@@ -21,10 +21,12 @@ author: Some Person
 
 navbar-links:
   About Me: "aboutme"
-  Resources:
-    - Beautiful Jekyll: "https://beautifuljekyll.com"
-    - Learn markdown: "https://www.markdowntutorial.com/"
-  Author's home: "https://deanattali.com"
+  Open Source: "open-source"
+  # Resources:
+    # - Beautiful Jekyll: "http://deanattali.com/beautiful-jekyll/"
+    # - Learn markdown: "http://www.markdowntutorial.com/"
+    # - GitHub Pages: "https://pages.github.com/"
+  # Author's home: "http://deanattali.com"
 
 ################
 # --- Logo --- #
@@ -32,7 +34,7 @@ navbar-links:
 
 # Image to show in the navigation bar - works best with a square image
 # Remove this parameter if you don't want an image in the navbar
-avatar: "/assets/img/avatar-icon.png"
+avatar: "/assets/img/avatar-icon.jpg"
 
 # By default, the image is cut into a circle. You can disable this behaviour by setting 'round-avatar: false'
 round-avatar: true
@@ -50,19 +52,21 @@ round-avatar: true
 # You can change the order that they show up on the page by changing the order here.
 # Uncomment the links you want to show and add your information to each one.
 social-network-links:
-  email: "someone@example.com"
-  rss: true  # remove this line if you don't want to show an RSS link at the bottom
-  facebook: deanattali
-  github: daattali
-  twitter: daattali
-  patreon: DeanAttali
-  youtube: "@daattali"
-  whatsapp: 15551212
+#  email: "someone@example.com"
+#  rss: true  # remove this line if you don't want to show an RSS link at the bottom
+#  facebook: deanattali
+  github: movermeyer
+  gitlab: movermeyer
+  bitbucket: movermeyer
+#  twitter: daattali
+#  patreon: DeanAttali
+#  youtube: "@daattali"
+#  whatsapp: 15551212
 #  medium: yourname
 #  reddit: yourname or r/yoursubreddit
-#  linkedin: daattali
+  linkedin: movermeyer
 #  xing: yourname
-#  stackoverflow: "3943160/daattali"
+  stackoverflow: "6460914/movermeyer"
 #  snapchat: deanat78
 #  instagram: deanat78
 #  spotify: yourname
@@ -79,14 +83,13 @@ social-network-links:
 #  discord: "invite_code" or "users/userid" or "invite/invite_code"
 #  kaggle: yourname
 #  hackerrank: yourname
-#  gitlab: yourname
 #  itchio: yourname
 #  untappd: yourname
 #  strava: youruserid
 
 # If you want your website to generate an RSS feed, provide a description
 # The URL for the feed will be https://<your_website>/feed.xml
-rss-description: This website is a virtual proof that I'm awesome
+# rss-description: This website is a virtual proof that I'm awesome
 
 ###########################
 # --- General options --- #
@@ -102,7 +105,7 @@ share-links-active:
 
 # How to display the link to your website in the footer
 # Remove this if you don't want a link in the footer
-url-pretty: "MyWebsite.com"
+url-pretty: "movermeyer.com"  # eg. "deanattali.com/beautiful-jekyll"
 
 # Add the website title to the title of every page
 title-on-all-pages: true
@@ -172,6 +175,9 @@ footer-hover-col: "#0085A1"
 
 # Fill in your Google Analytics tag ID (or "Measurement ID") to track your website usage
 #gtag: "G-XXXXXXXXXX"
+
+# Universal Analytics stopped collecting data in July 2023. Setting this makes the theme show a deprecation banner.
+#google_analytics: "UA-115072641-1"
 
 # Fill in your Cloudflare Analytics beacon token to track your website using Cloudflare Analytics
 #cloudflare_analytics: ""
