@@ -12,3 +12,4 @@ If you are getting me a present, I'd appreciate a donation in my name to any of 
 Alternatively, if digital/civil freedoms aren't interesting to you:
 
 * Anything on [Give Well](https://www.givewell.org)'s [list of best charities](https://www.givewell.org/charities/top-charities), as measured by "most good" per dollar donated (currently topped by the [Malaria Consortium](https://www.malariaconsortium.org/))
+
