@@ -6,7 +6,7 @@ categories: python github badges bots
 ---
 
 
-**TL;DR:** Many badges were broken since they were using the shuttered pypi.in site. I wrote a bot that could fix these and automatically submit pull requests with the changes. And then I had my GitHub account suspended. **Do not make automatic unsolicited pull requests.**
+**TL;DR:** Many badges were broken since they were using the shuttered pypip.in site. I wrote a bot that could fix these and automatically submit pull requests with the changes. And then I had my GitHub account suspended. **Do not make automatic unsolicited pull requests.**
 
 ## Disclaimer
 
