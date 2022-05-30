@@ -9,7 +9,7 @@ TODO: Update post time.
 
 **TL;DR:** I wrote a bot that checked PyPI and GitHub for Python packages that didn't advertise their supported Python versions and creates issues and Pull Requests to fix this.
 
-Back in December, I was porting a codebase from Python 2 to Python 3. Part of that task is making sure that all of the required dependencies also have support for Python 3. While nearly all of the packages you're likely to come accross have had Python 3 for years, this codebase had some obscure dependencies. I jumped over to PyPI and found that they had neither Trove classifiers, nor did they have any mention of supported versions in their README files on GitHub. *sigh*
+Back in December, I was porting a codebase from Python 2 to Python 3. Part of that task is making sure that all of the required dependencies also have support for Python 3. While nearly all of the packages you're likely to come across have had Python 3 for years, this codebase had some obscure dependencies. I jumped over to PyPI and found that they had neither Trove classifiers, nor did they have any mention of supported versions in their README files on GitHub. *sigh*
 
 Taking a look at the codebase, it looked as if both had Python 3 support. But it shouldn't require code inspection to do this. I opened issues on both of the repos asking for the supported versions to be added to the classifiers. Both issues were enthusiastically received and quickly addressed. That felt good, which got me wondering if I good do this automatically.
 
@@ -27,7 +27,7 @@ The rest of this post will discuss the how I went about building this and the su
 
 At time or writing, there are 126,243 packages on PyPI. That seemed like a lot, and I suspected that a large percentage of the are abandoned or unmaintained. So I'd really like to be able to get the list of packages in descending order of popularity.
 
-Thankfully, the [dedicated folks at PyPI](https://caremad.io/posts/2016/05/powering-pypi/) [publish a record for every download request](https://mail.python.org/pipermail/distutils-sig/2016-May/028986.html) in a [BigQuery](https://cloud.google.com/bigquery/) dataset. 
+Thankfully, the [dedicated folks at PyPI](https://caremad.io/posts/2016/05/powering-pypi/) [publish a record for every download request](https://mail.python.org/pipermail/distutils-sig/2016-May/028986.html) in a [BigQuery](https://cloud.google.com/bigquery/) dataset.
 
 Anyone with a Google Account and a credit card can spend a few cents and query the dataset using Google Cloud Platform.
 
@@ -167,10 +167,10 @@ xiyouMc/vivaredis # (in cases like this, append the package name)
 
 Now that I had a function that sanitizes and normalizes the URLs, it was a simple matter to create a loop that filled in a `project` column in the same SQLite database.
 
-Runnning a simple GET request for each project page returned 400 (TODO: real number) HTTP 404 status codes, indicating that some projects have been removed from GitHub. 
+Runnning a simple GET request for each project page returned 400 (TODO: real number) HTTP 404 status codes, indicating that some projects have been removed from GitHub.
 
 ## Read The Docs
-I also realized that many of the projects with URLs "readthedocs" in their domain name would also have their source code hosted on GitHub. So I wrote another function that would attept to determine the GitHub URL by parsing the Read the Docs URL and applying some heuristics:
+I also realized that many of the projects with URLs "readthedocs" in their domain name would also have their source code hosted on GitHub. So I wrote another function that would attempt to determine the GitHub URL by parsing the Read the Docs URL and applying some heuristics:
 
   1. Fetch the Read The Docs URL
   1. Find all links on the page that point to github.com
@@ -181,14 +181,14 @@ This got me an additional 472 (TODO: Get real number) GitHub project locations (
 
 ## Progress so far
 
-At this point, I knew the github project URL and the fact that they were missing the classifier tags. I technically have enough that I could create an issue on each repo. 
+At this point, I knew the github project URL and the fact that they were missing the classifier tags. I technically have enough that I could create an issue on each repo.
 But what would I say?  At this point, all I could say is "Hi, I noticed you're missing version classifiers in your setup.py. Could you please fix this?".
 
-That wasn't satisfying for me, nor as a library maintainer would I want to receive such a ticket. 
+That wasn't satisfying for me, nor as a library maintainer would I want to receive such a ticket.
 
 We should at least make an attempt of doing better detection of the versions they support, and make it easy for maintainers to make the changes. Perhaps we could even get enough confidence to make them a pull request.
 
-The first hint we could use to detect their supported versions is to search their READMEs. 
+The first hint we could use to detect their supported versions is to search their READMEs.
 
 # Fetching READMEs
 
@@ -232,7 +232,7 @@ Top 5 Languages in READMEs (according to `guess-language-spirit`) (TODO)
 | 4  | fr       | 323                                         |
 | 5  | pt       | 230                                         |
 
-Note that `UNKNOWN` means that `guess-language` wasn't able to make a good guess for the language. For example, it is impossible to determine the language of an empty README. 
+Note that `UNKNOWN` means that `guess-language` wasn't able to make a good guess for the language. For example, it is impossible to determine the language of an empty README.
 
 `ca` is Catalan, which seemed surprising. Manual inspection of those README's suggests that for whatever reason, markdown is being classified as Catalan. The `fr` (French) and `pt` (Portuguese) seem to be more accurate, but both of these also contain lots of English README's as well.
 
@@ -256,12 +256,12 @@ The next thing we could do is check the releases page to see if they are buildin
 
 # Parsing the code
 
-Finally, the last clue I used to figure out the supported versions of Python was to determine which versions of Python they did not support. 
+Finally, the last clue I used to figure out the supported versions of Python was to determine which versions of Python they did not support.
 There have been many syntax changes throughout the versions of Python. If we noticed that a project's source code was making use of specific syntax features, then we could rule out the versions of Python that are missing support for those features.
 
 This would require statically analyzing the source code. I wasn't going to actually run the code: YOU SHOULD NEVER RUN UNTRUSTED CODE. It could do any sort of nasty things to your computer, and you have no idea what malicious code might be sitting around in random GitHub repos.
 
-But even thought I was only going to statically analyze the code, there is still risk. I would be using git to clone the repo, which would download the source code to my computer. If someone had discovered a way to exploit a vulnerability in the `git` executable, there would be a possibility that they could compromise my computer. Further, if there were vulnerabilities in any of the static analysis code I was using, I could also find myself in trouble. 
+But even thought I was only going to statically analyze the code, there is still risk. I would be using git to clone the repo, which would download the source code to my computer. If someone had discovered a way to exploit a vulnerability in the `git` executable, there would be a possibility that they could compromise my computer. Further, if there were vulnerabilities in any of the static analysis code I was using, I could also find myself in trouble.
 
 Thankfully, I had thought about these sorts of attacks and I was already running within a virtual machine (In a similar fashion, if someone had figured out a way to exploit Beautiful Soup 4 my computer could have been compromised). This is by no means perfect protection, but it does make an attacker's job significantly more difficult ([which is the entire goal of security]() TODO: Find link about the economics of security).
 
@@ -297,11 +297,11 @@ except parse.ParseError as exc:
 With this quick check I could often eliminate checking the interpreters that belonged to either Python 2 or Python 3.
 
 
-# Creating Issues 
+# Creating Issues
 
-With all this information, I could then produce GitHub issues that I hoped would be appreciated instead of being considered a nuisance. 
+With all this information, I could then produce GitHub issues that I hoped would be appreciated instead of being considered a nuisance.
 
-In the case where I was quite confident that I had determined their supported versions, I also had the script produce Pull Requests that maintainers can accept immediately with a click of the merge button. 
+In the case where I was quite confident that I had determined their supported versions, I also had the script produce Pull Requests that maintainers can accept immediately with a click of the merge button.
 
 ## Badges
 
