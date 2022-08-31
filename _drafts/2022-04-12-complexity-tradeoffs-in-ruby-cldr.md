@@ -20,10 +20,10 @@ This can be costly in terms of the RAM used to store duplicate values, but allow
 
 ## Locale Inheritance
 
-CLDR defines an inheritance hierarchy for locales. 
+CLDR defines an inheritance hierarchy for locales.
 
-For example, `es-MX` ("Mexican Spanish") inherits from `es-419` ("Latin American Spanish") which inherits from `es` ("International Spanish"). 
-Further, CLDR defines a `root` locale that all top-level locales inherit from, so `es` inherits from `root`. 
+For example, `es-MX` ("Mexican Spanish") inherits from `es-419` ("Latin American Spanish") which inherits from `es` ("International Spanish").
+Further, CLDR defines a `root` locale that all top-level locales inherit from, so `es` inherits from `root`.
 
 If a key isn't present in the data for a particular locale, the client is supposed to fall back through the inheritance chain, and look for that key in each parent locale in turn.
 
@@ -65,7 +65,7 @@ The CLDR v41 data defines the locale inheritance chain for `en-CA` as `en-CA` ->
 
 But what if your client either cannot, or does not want to, fall back through locales?:
 
-* Perhaps it's a legacy client that doesn't understand CLDR's locale fallbacks, or is stuck using an old version of the inheritance hierarchy. 
+* Perhaps it's a legacy client that doesn't understand CLDR's locale fallbacks, or is stuck using an old version of the inheritance hierarchy.
 * Perhaps the performance penalty for making multiple lookups is prohibitive.
 
 In that case, you might want to "flatten" the data so that the values for every key are present in every locale with no fallbacks required. Effectively, flattening involves iterating over every available key and doing the resolution of the key in each locale.
@@ -76,7 +76,7 @@ In that case, you might want to "flatten" the data so that the values for every 
 joe: Joe's favourite colour is grey
 james: James' favorite color is mauve. # From `en.yml`
 mass-kilogram:
-  other: "%{count} kg" # From `root.yml` 
+  other: "%{count} kg" # From `root.yml`
 ```
 
 `en-US.yml`:
@@ -85,7 +85,7 @@ mass-kilogram:
 joe: Joe's favorite color is gray
 james: James' favorite color is mauve. # From `en.yml`
 mass-kilogram:
-  other: "%{count} kg" # From `root.yml` 
+  other: "%{count} kg" # From `root.yml`
 ```
 
 `en.yml`:
@@ -93,7 +93,7 @@ mass-kilogram:
 ```yaml
 james: James' favorite color is mauve.
 mass-kilogram:
-  other: "%{count} kg" # From `root.yml` 
+  other: "%{count} kg" # From `root.yml`
 ```
 
 `root.yml`:
@@ -127,14 +127,17 @@ So a lookup of `mass-kilogram.one` in `en-CA` should first fallback to `mass-kil
 5. `root.mass-kilogram.one`
 6. `root.mass-kilogram.other`
 
-`ruby-i18n/i18n`'s [`I18n::Backend::Pluralization`](https://github.com/ruby-i18n/i18n/blob/master/lib/i18n/backend/pluralization.rb) unfortunately doesn't understand Lateral Inheritance, so flattening of pluralization value is necessary to make pluralization work when inheriting from parent locales.
+`ruby-i18n/i18n`'s [`I18n::Backend::Pluralization`](https://github.com/ruby-i18n/i18n/blob/master/lib/i18n/backend/pluralization.rb) unfortunately doesn't understand Lateral Inheritance, so flattening of pluralization value is necessary to make pluralization work when inheriting from parent locales. This involves flattening the `other` key, then duplicating it fill in any missing pluralization keys needed for the locale.
 
 `en-CA.yml`:
 
 ```
 mass-kilogram:
-  one: "%{count} kg" # Copied from `root.yml`'s `mass-kilogram.other`
+  other: "%{count} kg" # Copied from `root.yml`'s `mass-kilogram.other`
+  one: "%{count} kg" # Copied from `mass-kilogram.other` (which in turn was copied from `root.yml`'s `mass-kilogram.other`)
 ```
+
+If/when [this PR](https://github.com/ruby-i18n/i18n/pull/634) is merged, it will at least know enough to inherit from the `other` key.
 
 ### Other Lateral Inheritance attributes
 
@@ -188,7 +191,7 @@ Aliases are defined in the `root` locale and specify that the client should rest
 ### Aside: Explicit inheritance markers
 
 In the [upstream CLDR repository](https://github.com/unicode-org/cldr), you may come across keys with a value of `↑↑↑`. This is an explicit Locale Inheritance marker.
-It allows the upstream maintainers to distinguish between the two reasons why a key might be missing from a locale: 
+It allows the upstream maintainers to distinguish between the two reasons why a key might be missing from a locale:
 
 * The CLDR is missing data for that key in that locale (i.e., it's missing data)
 * The CLDR is relying on Locale Inheritance to provide the value (i.e., it's intentionally missing a value)
