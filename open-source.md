@@ -3,7 +3,7 @@ layout: page
 title: Open Source
 ---
 
-I love to contribute to Open Source projects. Besides being a maintainer of a [top 1000 Python library](https://github.com/closeio/ciso8601), my contributions have mostly been little bits here and there, fixing bugs as I find them in projects I use. You can find my contributions on the following platforms:
+I love to contribute to Open Source projects. Besides being a maintainer of a [top 1000 Python library](https://github.com/closeio/ciso8601) and a few others, my contributions have mostly been little bits here and there, reporting and fixing bugs as I find them in projects I use. You can find my contributions on the following platforms:
 
 <div class="os-platform-list">
 <ul class="list-inline text-center">
