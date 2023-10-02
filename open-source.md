@@ -76,6 +76,7 @@ This involved:
 
 * [Ruby's `i18n` gem](https://github.com/ruby-i18n/i18n/pulls?q=is%3Apr+author%3Amovermeyer)
 * [Ruby on Rails](https://rubyonrails.org/): [#41381](https://github.com/rails/rails/pull/41381) (Minor)
+* [Thor]: [#784](https://github.com/rails/thor/pull/784)
 * [Ansible](https://www.ansible.com/): [#24545](https://github.com/ansible/ansible/issues/24545) [#24546](https://github.com/ansible/ansible/issues/24546)
 * [AtomLinter/linter-pyflakes](https://github.com/AtomLinter/linter-pyflakes): [(Minor)](https://github.com/AtomLinter/linter-pyflakes/commit/8c0a12478f138451c13fc32e0e3c5fe4116a947e)
 * [retype](https://github.com/ambv/retype): [#1](https://github.com/ambv/retype/issues/1) [#2](https://github.com/ambv/retype/issues/2)
