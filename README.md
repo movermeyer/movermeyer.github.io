@@ -1,3 +1,15 @@
+# Running the site locally
+
+1. Install the Ruby version pinned in `.ruby-version` (currently 3.3.13). With rbenv, `rbenv install` does this, and rbenv switches to it automatically inside this repo.
+   Ruby 3.4+ won't work without changes: it no longer ships `base64` as a default gem, and Jekyll needs it.
+2. Install the gems: `bundle install`
+3. Start the server: `bundle exec jekyll serve --livereload`
+4. Open http://127.0.0.1:4000. A post is at `http://127.0.0.1:4000/<YYYY-MM-DD>-<slug>/`, and the page reloads whenever you save a file.
+
+To also preview posts in `_drafts/`, add `--drafts`. Stop the server with Ctrl-C.
+
+---
+
 # Beautiful Jekyll
 
 [![Gem Version](https://badge.fury.io/rb/beautiful-jekyll-theme.svg)](https://badge.fury.io/rb/beautiful-jekyll-theme)
