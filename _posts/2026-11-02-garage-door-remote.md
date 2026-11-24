@@ -2,7 +2,7 @@
 layout: post
 title:  "You can just open garages"
 date:   2026-11-02 00:00:00 -0500
-tags: ai claude home-assistant esphome iot
+tags: ai claude home-assistant esphome iot cc1101
 ---
 
 After the success of [this project](https://movermeyer.com/2026-10-27-home-assistant-blinds/)...
