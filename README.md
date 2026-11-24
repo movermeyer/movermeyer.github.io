@@ -8,6 +8,21 @@
 
 To also preview posts in `_drafts/`, add `--drafts`. Stop the server with Ctrl-C.
 
+## Images
+
+A pre-commit hook refuses to commit JPEG, PNG, WebP or GIF images that:
+
+* carry EXIF, XMP, IPTC or comment metadata (GPS location, device, timestamps), or
+* are over 1600 px on their longest side, or over 1 MiB.
+
+Enable it once per clone:
+
+```
+git config core.hooksPath .githooks
+```
+
+To fix them: `script/check_images.py --fix <files>`. It strips the metadata (keeping colour profiles), and shrinks JPEGs and PNGs with `sips`. If a JPEG's EXIF says it's rotated, it first turns the pixels upright, losslessly with `jpegtran` (`brew install jpeg`), so the photo doesn't end up sideways. Oversized WebPs and GIFs have to be shrunk by hand. The limits are at the top of the script.
+
 ---
 
 # Beautiful Jekyll

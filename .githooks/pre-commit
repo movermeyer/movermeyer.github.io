@@ -1,0 +1,5 @@
+#!/bin/sh
+# Refuse to commit images with EXIF, XMP, IPTC or comment metadata (GPS location, device, timestamps),
+# or that are too big (see MAX_DIMENSION and MAX_BYTES in script/check_images.py).
+# Enable with: git config core.hooksPath .githooks
+exec python3 "$(git rev-parse --show-toplevel)/script/check_images.py" --staged
