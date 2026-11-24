@@ -2,7 +2,7 @@
 layout: post
 title:  "Genmitsu Sainsmart 3018 PROver CNC debugging"
 date:   2022-02-05 12:00:00 -0000
-categories: genmitsu sainsmart 3018 prover cnc debugging
+tags: genmitsu sainsmart 3018 prover cnc debugging
 ---
 
 I recently purchased a [Genmitsu Sainsmart 3018 PROver CNC machine](https://www.sainsmart.com/products/sainsmart-genmitsu-cnc-router-3018-prover-kit), with a GRBL v1.1 control board. I've spent more time then I'd care to admit on simple, silly things. So I'll be documenting them here for my posterity. Hopefully this can help you on your CNC journey.

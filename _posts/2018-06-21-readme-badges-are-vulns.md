@@ -2,7 +2,7 @@
 layout: post
 title:  "README badges are vulnerabilities"
 date:   2018-06-22 12:40:00 -0000
-categories: github badges vulns security
+tags: github badges vulns security
 ---
 
 **TL;DR:** Badges are not magic. They are just image hotlinks, and therefore you need to be able to trust the third party who serves them.

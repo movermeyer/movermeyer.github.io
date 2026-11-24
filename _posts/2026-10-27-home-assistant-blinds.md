@@ -2,7 +2,7 @@
 layout: post
 title:  "You can just control blinds"
 date:   2026-10-27 16:00:00 -0400
-categories: ai claude home-assistant esphome iot
+tags: ai claude home-assistant esphome iot
 ---
 
 Two years ago, I discovered [Home Assistant](https://www.home-assistant.io/) and [ESPHome](https://esphome.io/) as a foundation for IoT devices that aren't terrible spyware.

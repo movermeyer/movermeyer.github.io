@@ -2,7 +2,7 @@
 layout: post
 title:  "Migrating file(s) between Git repos"
 date:   2019-08-14 00:00:00 -0000
-categories: git
+tags: git
 ---
 
 In some scenarios, you might want to extract files from one Git repo and insert them into another repo.

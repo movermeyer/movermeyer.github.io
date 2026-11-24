@@ -2,7 +2,7 @@
 layout: post
 title:  "You can just control deck lights"
 date:   2026-11-02 04:00:00 -0500
-categories: ai claude home-assistant esphome iot
+tags: ai claude home-assistant esphome iot
 ---
 
 After the success of [this project](https://movermeyer.com/2026-11-02-garage-door-remote/)...

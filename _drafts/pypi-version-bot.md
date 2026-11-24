@@ -2,7 +2,7 @@
 layout: post
 title:  "PyPI version tags bot"
 date:   2018-01-09 13:30:01 -0000
-categories: python
+tags: python
 ---
 
 TODO: Update post time.

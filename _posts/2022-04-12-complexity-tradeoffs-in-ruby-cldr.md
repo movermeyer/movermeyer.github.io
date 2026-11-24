@@ -2,7 +2,7 @@
 layout: post
 title:  "Complexity trade-offs in `ruby-cldr`"
 date:   2022-04-12 09:00:00 -0000
-categories: ruby i18n unicode cldr trade-offs
+tags: ruby i18n unicode cldr trade-offs
 ---
 
 CLDR defines several mechanisms for keys to inheriting values from other keys:
