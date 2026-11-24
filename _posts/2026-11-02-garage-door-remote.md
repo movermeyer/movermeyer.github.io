@@ -22,7 +22,7 @@ Claude one-shot the code, and also gave me instructions for which pins to connec
 
 However, it didn't work right away: pairing the remote with the opener gave 2 flashes (short-long), and then anytime the button was pressed it would flash 3 times, and ignore all presses for the next 30 seconds.
 
-During the debugging, to rule out problems in the transmitting code, I asked it to temporarily impersonate the original remote, which triggered a downgrade from Opus 5.5 for running afoul of cyber safeguards. But Opus 4.8 was more than capable to help. Impersonating the original remote caused it to work perfectly, which meant that the transmitting code worked.
+During the debugging, to rule out problems in the transmitting code, I asked it to temporarily impersonate the original remote, which triggered a downgrade from Opus 5.5 for running afoul of cyber safeguards. But Opus 4.8 was more than capable of helping. Impersonating the original remote caused it to work perfectly, which meant that the transmitting code worked.
 
 It turned out that the garage door opener only accepts remote IDs that are even, and the random generator had happened to produce one that was odd. 🫠
 
